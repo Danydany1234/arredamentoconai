@@ -1,4 +1,6 @@
-// Funzione per caricare l'immagine e arredare la stanza
+document.getElementById("arredaButton").addEventListener("click", function() {
+    alert("Funziona! Hai cliccato sul bottone 😄");
+});// Funzione per caricare l'immagine e arredare la stanza
 document.getElementById("arredaButton").addEventListener("click", function() {
     const imageInput = document.getElementById("uploadImage");
     const imageFile = imageInput.files[0];
