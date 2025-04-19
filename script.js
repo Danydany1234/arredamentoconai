@@ -1,48 +1,37 @@
-document.getElementById("arredaButton").addEventListener("click", async function () {
-    const fileInput = document.getElementById("uploadImage");
-    const image = fileInput.files[0];
+const apiKey =279d9a7e23764faeafdf4c589992bb32; // Sostituisci con la tua chiave API di InteriorDecorator
 
-    if (!image) {
-        alert("Carica prima un'immagine.");
-        return;
-    }
+// Funzione per caricare l'immagine e inviarla all'API per arredarla
+function caricaEArreda() {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    
+    if (file) {
+        const formData = new FormData();
+        formData.append('image', file);
 
-    document.getElementById("loading").style.display = "block";
-
-    // Carica l'immagine su un servizio di hosting temporaneo
-    const formData = new FormData();
-    formData.append("file", image);
-
-    const uploadRes = await fetch("https://api.imgbb.com/1/upload?key=r8_duSHH3qhMAhZhBuw2ujFa51KuaVS1yd1BpJQV, {
-        method: "POST",
-        body: formData
-    });
-
-    const uploadData = await uploadRes.json();
-    const imageUrl = uploadData.data.url;
-
-    // Ora passa l'immagine a Replicate
-    const response = await fetch("https://api.replicate.com/v1/predictions", {
-        method: "POST",
-        headers: {
-            "Authorization": `Token ${REPLICATE_API_KEY}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            version: "YOUR_MODEL_VERSION", // <-- sostituisci con la versione del modello
-            input: {
-                image: imageUrl
+        fetch('https://api.interiordecorator.ai/design', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.image_url) {
+                // Visualizza l'immagine arredamento
+                const imgElement = document.createElement('img');
+                imgElement.src = data.image_url;
+                document.getElementById('design-result').appendChild(imgElement);
+            } else {
+                alert('Errore nell\'arredare la stanza');
             }
         })
-    });
-
-    const result = await response.json();
-    document.getElementById("loading").style.display = "none";
-
-    if (result?.prediction?.output) {
-        document.getElementById("result").innerHTML = `<img src="${result.prediction.output}" alt="Risultato AI">`;
+        .catch(error => {
+            console.error('Errore:', error);
+            alert('Si è verificato un errore, riprova.');
+        });
     } else {
-        alert("Errore nell'elaborazione dell'immagine.");
-        console.error(result);
+        alert('Per favore, carica un\'immagine della stanza.');
     }
-});
+}
