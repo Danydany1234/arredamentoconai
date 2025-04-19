@@ -13,7 +13,7 @@ document.getElementById("arredaButton").addEventListener("click", async function
     const formData = new FormData();
     formData.append("file", image);
 
-    const uploadRes = await fetch("https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY", {
+    const uploadRes = await fetch("https://api.imgbb.com/1/upload?key=r8_duSHH3qhMAhZhBuw2ujFa51KuaVS1yd1BpJQV, {
         method: "POST",
         body: formData
     });
@@ -29,7 +29,7 @@ document.getElementById("arredaButton").addEventListener("click", async function
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            version: "YOUR_MODEL_VERSION", // <-- qui va il modello di Replicate che vuoi usare
+            version: "YOUR_MODEL_VERSION", // <-- sostituisci con la versione del modello
             input: {
                 image: imageUrl
             }
