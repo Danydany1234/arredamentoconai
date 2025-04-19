@@ -10,3 +10,4 @@ Thumbs.db
 
 # Ignora la cartella node_modules se stai usando npm per la gestione dei pacchetti (opzionale)
 node_modules/
+.env
