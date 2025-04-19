@@ -1,7 +1,7 @@
 const response = await fetch("/api/replicate/predictions", {
   method: "POST",
   headers: {
-    "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`,
+    "Authorization": `Token r8_8XyPPlqyTyBHIvFrviOd3GrLIu0GpAD0ssukc>`,
     "Content-Type": "application/json"
   },
   body: JSON.stringify({
