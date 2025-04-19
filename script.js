@@ -32,3 +32,4 @@ function caricaEArreda() {
         });
     } else {
         alert('Per favore, carica un\'immagine della stanza.');
+        </body>
