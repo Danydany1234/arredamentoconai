@@ -1,3 +1,0 @@
-git add .
-git commit -m "Aggiunto .env e .gitignore per nascondere la chiave API"
-git push
