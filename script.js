@@ -1,37 +1,37 @@
 // script.js
-const apiKey =279d9a7e23764faeafdf4c589992bb32;  // Sostituisci con la tua chiave API
 
-function caricaEArreda() {
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
+import { API_KEY, REPLICATE_API_URL } from './config.js';
 
-    if (file) {
-        const formData = new FormData();
-        formData.append('image', file);
+document.getElementById('generate-button').addEventListener('click', async () => {
+    const description = document.getElementById('room-description').value;
+    if (!description) {
+        alert('Per favore, inserisci una descrizione della stanza.');
+        return;
+    }
 
-        fetch('https://api.interiordecorator.ai/design', {
+    try {
+        const response = await fetch(REPLICATE_API_URL, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${apiKey}`
+                'Authorization': `Bearer ${API_KEY}`,
+                'Content-Type': 'application/json',
             },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data && data.image_url) {
-                const imgElement = document.createElement('img');
-                imgElement.src = data.image_url;
-                document.getElementById('design-result').appendChild(imgElement);
-            } else {
-                alert('Errore nell\'arredare la stanza');
-            }
-        })
-        .catch(error => {
-            console.error('Errore:', error);
-            alert('Si è verificato un errore, riprova.');
+            body: JSON.stringify({
+                version: 'latest_version_id', // Sostituisci con la versione corretta del modello su Replicate
+                input: { prompt: description },
+            }),
         });
-    } else {
-        alert('Per favore, carica un\'immagine della stanza.');
-        <script src="script.js"></script>
-        </body>
-<script>
+
+        const data = await response.json();
+
+        if (data && data.output) {
+            const imageUrl = data.output[0];
+            document.getElementById('generated-image').src = imageUrl;
+        } else {
+            alert('Errore nella generazione dell\'immagine.');
+        }
+    } catch (error) {
+        console.error('Errore:', error);
+        alert('Si è verificato un errore durante la generazione dell\'immagine.');
+    }
+});
