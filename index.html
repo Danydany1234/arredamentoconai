@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Carica e Arreda</title>
+    <title>Generatore di Stanze AI</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Il tuo pulsante -->
-    <button onclick="caricaEArreda()">Carica e Arreda</button>
-
-    <!-- Link al file JavaScript -->
-    <script src="percorso/del/tuo/script.js"></script>
+    <div class="container">
+        <h1>Genera un'Immagine di una Stanza</h1>
+        <input type="text" id="room-description" placeholder="Descrivi la stanza" />
+        <button id="generate-button">Genera Immagine</button>
+        <div id="result-container">
+            <img id="generated-image" src="" alt="Immagine generata dalla AI" />
+        </div>
+    </div>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
