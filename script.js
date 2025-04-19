@@ -32,5 +32,6 @@ function caricaEArreda() {
         });
     } else {
         alert('Per favore, carica un\'immagine della stanza.');
+        <script src="script.js"></script>
         </body>
 <script>
