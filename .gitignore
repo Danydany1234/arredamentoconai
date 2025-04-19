@@ -1,2 +1,12 @@
-.env
+# Ignora il file config.js che contiene la chiave API (non dovresti mai caricarlo su GitHub)
 config.js
+
+# Ignora i file generati da editor di testo (come VS Code)
+.vscode/
+
+# Ignora eventuali file temporanei di sistema (macOS e Windows)
+.DS_Store
+Thumbs.db
+
+# Ignora la cartella node_modules se stai usando npm per la gestione dei pacchetti (opzionale)
+node_modules/
