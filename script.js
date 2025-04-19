@@ -17,7 +17,7 @@ document.getElementById('generate-button').addEventListener('click', async () =>
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                version: 'latest_version_id', // Sostituisci con la versione corretta del modello su Replicate
+                version:0.14.3.
                 input: { prompt: description },
             }),
         });
